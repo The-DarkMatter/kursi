@@ -13,7 +13,7 @@ Kursi ("chair") is a seat-booking service that stays correct when tens of thousa
 - **Try it in a browser:** https://kursi.amogh.cloud. **Kursi** is a booking site on the same service. Open an event in two windows and click the same seat in both: exactly one of you gets it. Or send 1,500 bots at your own copy of a venue in the Rush lab. See [below](#kursi-the-booking-ui).
 - **Live dashboard (public, no login):** [Grafana: on-sale burst](https://violetmonorail1413.grafana.net/public-dashboards/4a39fb254b98447aa608638245763b54) shows outcomes by reason, 5xx, reconciliation drift, seat gauges, latency, pool saturation, and logs searchable by request id
 - **Raw metrics:** https://seats.amogh.cloud/metrics
-- **Live burst:** the full stampede, run from GitHub's network against the live URL: Actions → *live burst* → Run workflow.
+- **Latest live burst** (16 Oct 2026, from GitHub's network against the live URL): 19,537 reserve calls, 26/26 checks passed, zero 5xx, zero transport errors ([job log](https://github.com/The-DarkMatter/kursi/actions/runs/38918467965)). Re-run it any time: Actions → *live burst* → Run workflow.
 - **Design write-up:** [WRITEUP.md](WRITEUP.md)
 
 Java 25 · Spring Boot 4.1 · MySQL 8.4 (InnoDB, READ COMMITTED) · plain JDBC · Flyway · Micrometer/Prometheus · Docker Compose · Caddy · Grafana Alloy/Cloud · Preact + TypeScript (UI) · Playwright
@@ -125,7 +125,7 @@ curl -s $B/shows/$SHOW | jq .counts        # {"available":2,"held":0,"confirmed"
 <p align="center"><img src="docs/media/booking.gif" alt="Booking: the venue map, zooming into the Diamond section, picking three seats with the row and seat card on hover, the bottom bar with the total, the checkout with a five-minute hold timer, paying, and the ticket" width="100%"></p>
 <p align="center"><sub>Venue map → zoom into a section → pick seats → five-minute hold → pay → ticket.</sub></p>
 
-<p align="center"><img src="docs/media/rush.gif" alt="The Rush lab: a thousand bots hit a copy of the theatre; the request, booking and seat-taken counters climb, the seats fill, errors stay at zero, and available plus held plus sold always equals 550" width="100%"></p>
+<p align="center"><img src="docs/media/rush.gif" alt="The Rush lab: a thousand bots hit a copy of the theatre; in 7.2 seconds the counters reach 1,091 requests and 792 seat-taken declines with zero errors, and available plus held plus sold always equals 550" width="100%"></p>
 <p align="center"><sub>The Rush lab: 1,000 bots through the real reserve path. Errors stay at 0, and available + held + sold equals the capacity at every moment.</sub></p>
 
 <p align="center">
