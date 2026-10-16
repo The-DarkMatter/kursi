@@ -1,0 +1,13 @@
+target/
+loadtest/target/
+.git/
+.github/
+.idea/
+.vscode/
+*.iml
+ops/
+deploy/
+*.md
+!loadtest/
+web/node_modules/
+web/dist/
